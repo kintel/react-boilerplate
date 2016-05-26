@@ -27,37 +27,27 @@ Run:
     cd client
     npm run dev
 
-## Run
-
-Deployment mode (port 5000):
-
-    heroku local          # Path issue to babel-node
-    PATH=$PWD/node_modules/.bin:$PATH heroku local
-
-Development mode (port 9876):
-
-    # FIXME: This will change once we integrate react-hot-loader with server reload
-    npm run nodemon
-
 ## Heroku Deployment API server
 
 ### Setup (once)
 
     heroku login
-    heroku create api-boilerplate                    # Also creates a git remote 'heroku'
-    # ..or
-    heroku git:remote -r server -a api-boilerplate   # Just create git remote server
-    heroku addons:create mongolab:sandbox
-    heroku config:set AUTH0_CLIENT_ID=<...>
-    heroku config:set AUTH0_CLIENT_SECRET=<...>
+    heroku create -n kintel-api-boilerplate
+    heroku git:remote -r server -a kintel-api-boilerplate
+    heroku buildpacks:set -r server heroku/nodejs
+    heroku addons:create -r server mongolab:sandbox
+    heroku config:set -r server AUTH0_CLIENT_ID=<...>
+    heroku config:set -r server AUTH0_CLIENT_SECRET=<...>
+
+NB! You may need to push to :refs/heads/master once to correctly setup the remote master branch
 
 ### Setup (subsequent clones)
 
-    heroku git:remote -r server -a api-boilerplate
+    heroku git:remote -r server -a kintel-api-boilerplate
+
+NB! Remember to populate server/.env with the correct private info
 
 ### Deploy
-
-FIXME: This will change once we have a separate server for test
 
 Deploy master branch to heroku (NB! remote branch must be master):
 
@@ -86,19 +76,20 @@ Run migration:
 ### Setup (once)
 
     heroku login
-    heroku create boilerplate               # Also creates a git remote 'heroku'
-    # ..or
-    heroku git:remote -r client -a boilerplate        # Just create git remote 'heroku'
-    heroku buildpacks:set git://github.com/hone/heroku-buildpack-static.git
-    heroku config:set -r client API_APP_NAME=api-boilerplate    # Or another server
+    heroku create -n kintel-boilerplate
+    heroku git:remote -r client -a kintel-boilerplate
+    heroku buildpacks:add -r client heroku/nodejs
+    heroku buildpacks:add -r client https://github.com/marshall-lee/heroku-buildpack-webpack#use_node_env
+    heroku buildpacks:add -r client https://github.com/heroku/heroku-buildpack-static
+    heroku config:set -r client API_APP_NAME=kintel-api-boilerplate
+
+NB! You may need to push to :refs/heads/master once to correctly setup the remote master branch
 
 ### Setup (subsequent clones)
 
-    heroku git:remote -r client -a boilerplate
+    heroku git:remote -r client -a kintel-boilerplate
 
 ### Deploy
-
-FIXME: This will change once we have a separate server for test
 
 Deploy current branch to heroku (NB! remote branch must be master):
 
