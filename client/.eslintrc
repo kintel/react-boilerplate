@@ -1,0 +1,45 @@
+{
+  // http://eslint.org/docs/user-guide/configuring
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+
+  "env": {
+    "browser": true, // browser global variables.
+    "node": true, // Node.js global variables and Node.js-specific rules.
+    "mocha": true, // adds all of the Mocha testing global variables.
+    "es6": true // enable all ECMAScript 6 features except for modules.
+  },
+
+  "globals": {
+    "dymo": false
+  },
+
+  "plugins": [
+    "react"
+  ],
+
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "0.14.0"
+    }
+  },
+
+  // http://eslint.org/docs/rules/
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "rules": {
+
+    "semi": [2, "always"], // require use of semicolons instead of ASI
+    curly: [1, "multi-line", "consistent"],
+    "no-console": 0, // allow use of console (off by default in the node environment)
+    "no-var": 2, // require let or const instead of var
+    "comma-dangle": 0
+
+  }
+}
