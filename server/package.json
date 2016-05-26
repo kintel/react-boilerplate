@@ -4,7 +4,7 @@
   "description": "Express REST API boilerplate",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.com:FIXME"
+    "url": "git remote add origin git@github.com:kintel/react-boilerplate.git"
   },
   "scripts": {
     "dev": "npm run nodemon",
@@ -16,7 +16,7 @@
   "authors": [
     "Marius Kintel <marius@kintel.net>"
   ],
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "node": ">=4.4"
   },
