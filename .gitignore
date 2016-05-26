@@ -1,0 +1,7 @@
+.env
+**/node_modules
+**/public
+\#*#
+npm-debug.log
+
+.env.heroku
