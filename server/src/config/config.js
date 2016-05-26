@@ -5,7 +5,7 @@ dotenv.load(); // loads .env into process.env
 
 const PORT = process.env.PORT || 7070;
 
-const DATABASE = process.env.DATABASE || process.env.MONGOHQ_URL || process.env.MONGOLAB_URI;
+const DATABASE = process.env.DATABASE || process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || process.env.MONGODB_URI;
 
 if (typeof DATABASE !== 'string' || DATABASE.length === 0) {
   throw new Error('DATABASE not defined');
